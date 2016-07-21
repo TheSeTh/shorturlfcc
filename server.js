@@ -86,12 +86,12 @@ app.get(re_weburl, function(req,res) {
             if(data == null) {
                 collection.insertOne(objtoinsert, function(err,newel) {
                     if (err) throw err;
-                    res.end(JSON.stringify({'original_url': q, 'short_url' : 'https://safe-stream-12833.herokuapp.com/'+newel.ops[0].id }));
+                    res.end(JSON.stringify({'original_url': q, 'short_url' : process.env.APP_URL+newel.ops[0].id }));
                     db.close();
                 });
             }
             else {
-                res.end(JSON.stringify({'original_url': q, 'short_url' : 'https://safe-stream-12833.herokuapp.com/'+data.id }));
+                res.end(JSON.stringify({'original_url': q, 'short_url' : process.env.APP_URL+data.id }));
                 db.close();
             }
         });
